@@ -1,0 +1,22 @@
+<%= flash[:errors] %>
+<% if type == 'new' 
+  action_url = users_url 
+  button_label = 'Create User' 
+elsif type == 'edit' 
+  action_url = user_url(user) 
+  button_label = 'Edit User' 
+end %>
+
+<form action="<%= action_url %>" method="post">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  <label>Username:
+    <input type="text" name="user[username]" value="<%= user.username %>">
+  </label>
+  <label>Password:
+    <input type="text" name="user[password]" value="<%= user.password %>">
+  </label>
+  <input type="submit" value="<%= button_label %>">
+</form>
